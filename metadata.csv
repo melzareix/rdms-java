@@ -1,8 +1,0 @@
-Cities,Governorate,java.lang.String,false,false
-Cities,Founding_Date,java.util.Date,false,false
-Cities,Name,java.lang.String,false,false
-Cities,ID,java.lang.Integer,true,false
-Students,Join Date,java.util.Date,false,false
-Students,Class,java.lang.String,false,false
-Students,Name,java.lang.String,false,false
-Students,ID,java.lang.Integer,true,false
