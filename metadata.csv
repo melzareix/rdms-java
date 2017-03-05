@@ -1,0 +1,12 @@
+Cities,Governorate,java.lang.String,false,false
+Cities,Founding_Date,java.util.Date,false,false
+Cities,Name,java.lang.String,false,false
+Cities,ID,java.lang.Integer,true,false
+Cities,Governorate,java.lang.String,false,false
+Cities,Founding_Date,java.util.Date,false,false
+Cities,Name,java.lang.String,false,false
+Cities,ID,java.lang.Integer,true,false
+Cities,Governorate,java.lang.String,false,false
+Cities,Founding_Date,java.util.Date,false,false
+Cities,Name,java.lang.String,false,false
+Cities,ID,java.lang.Integer,true,false

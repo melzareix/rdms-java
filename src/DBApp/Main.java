@@ -95,15 +95,13 @@ public class Main {
     }
 
     /**
-     * A method to insert a tuple into an existing table
+     * A method to load an existing table.
      *
-     * @param strTableName:     name of table to insert into
-     * @param htblColNameValue: a hashtable of column names and values for each column, for example, ("ID", "50011") where ID is
-     *                          the name of the column and 50011 is the value to be inserted.
+     * @param strTableName: name of table to retrieve the metadata.
+     * @return The desired table as Table Object.
      */
 
-    private void insertIntoTable(String strTableName, Hashtable<String, String> htblColNameValue)
-            throws DBException, IOException, ClassNotFoundException {
+    private Table loadTable(String strTableName) throws IOException {
 
         Hashtable<String, String> metadata = this.loadTableMetadata(strTableName);
 
@@ -123,13 +121,28 @@ public class Main {
         * Create In-Memory Table and Insert Record.
         * */
 
-        Table table = new Table(strTableName, colNames.toArray(new String[colNames.size()])
+        return new Table(strTableName, colNames.toArray(new String[colNames.size()])
                 , colTypes.toArray(new String[colTypes.size()]));
+    }
 
-        String[] record = new String[htblColNameValue.size()];
-        for (int i = 0; i < colNames.size(); i++) {
-            record[i] = htblColNameValue.get(colNames.get(i));
+    /**
+     * A method to insert a tuple into an existing table
+     *
+     * @param strTableName:     name of table to insert into
+     * @param htblColNameValue: a hashtable of column names and values for each column, for example, ("ID", "50011") where ID is
+     *                          the name of the column and 50011 is the value to be inserted.
+     */
+
+    private void insertIntoTable(String strTableName, Hashtable<String, String> htblColNameValue)
+            throws DBException, IOException, ClassNotFoundException {
+
+        Table table = this.loadTable(strTableName);
+
+        String[] record = new String[htblColNameValue.size() + 1];
+        for (int i = 0; i < table.colNames.length; i++) {
+            record[i] = htblColNameValue.get(table.colNames[i]);
         }
+
         table.insert(record);
     }
 
@@ -141,82 +154,61 @@ public class Main {
      *                          the name of the column and 50011 is the value to be used for identifying row to be deleted.
      * @param strOperator:      possible values are AND or OR to combine the keys in htblColNameValue
      */
-    public void deleteFromTable(String strTableName, Hashtable<String, String> htblColNameValue, String strOperator) throws DBException, IOException, ClassNotFoundException {
 
-        Hashtable<String, Integer> cols = new Hashtable<String, Integer>();
-        String[] colNames = new String[4];
-        String[] colTypes = new String[4];
-        int idx = 0;
-        BufferedReader bf = new BufferedReader(new FileReader("metadata.csv"));
-        String tempLine;
-        String[] line;
+    public void deleteFromTable(String strTableName, Hashtable<String, String> htblColNameValue, String strOperator)
+            throws DBException, IOException, ClassNotFoundException {
 
+        Table table = this.loadTable(strTableName);
+        Page currentPage;
 
-        while (true) {
-            tempLine = bf.readLine();
-            if (tempLine == null)
-                break;
-            line = tempLine.split(",");
-            if (!line[0].equals(strTableName)) continue;
-            cols.put(line[1], idx);
+        boolean isAND = strOperator.equals("AND");
 
-            System.out.println(Arrays.toString(line));
-            System.out.println(idx);
+        for (int i = 0; i <= table.numPages; i++) {
+            currentPage = table.loadPage(i + 1); // Pages start from 1
 
-            colNames[idx] = line[1];
-            colTypes[idx] = line[2];
-            idx++;
-        }
+            for (int k = 0; k < currentPage.current; k++) {
+                boolean deleteRecord = false;
+                String[] record = currentPage.data[k];
 
-        Table table = new Table(strTableName, colNames, colTypes);
-        String folderPath = "tabledata/" + table.name;
-        String filename;
-        for (int i = 1; i <= (table.numPages + 1); i++) {
-            filename = folderPath + "/" + i + ".csv";
-            BufferedReader bf1 = new BufferedReader(new FileReader(filename));
-            StringBuilder sb = new StringBuilder();
+                for (int j = 0; j < record.length; j++) {
+                    String colName = table.colNames[j];
+                    String colValue = record[j];
+                    String queryValue = htblColNameValue.get(colName);
 
-            while (true) {
-                tempLine = bf1.readLine();
-                System.out.println(tempLine);
-                if (tempLine == null)
-                    break;
-                line = tempLine.split(",");
-                boolean delete = true;
-                if (strOperator.equals("AND")) {
+                    if (queryValue == null) continue;
 
-                    for (Map.Entry<String, String> entry : htblColNameValue.entrySet()) {
-                        if (!line[cols.get(entry.getKey())].equals(entry.getValue()))
-                            delete = false;
+                    boolean matches = htblColNameValue.get(colName).equals(colValue);
 
-                    }
-                } else {
-                    delete = false;
-                    for (Map.Entry<String, String> entry : htblColNameValue.entrySet()) {
-                        if (line[cols.get(entry.getKey())].equals(entry.getValue())) {
-                            delete = true;
+                    /*
+                    * Deletion Logic
+                    * If found a match mark delete, If on OR quit
+                    * If not matching, If AND mark false and quit.
+                    * */
+
+                    if (matches) {
+                        deleteRecord = true;
+                        if (!isAND) break;
+                    } else {
+                        if (isAND) {
+                            deleteRecord = false;
                             break;
                         }
-
                     }
-                }
-
-                if (delete) {
-                    System.out.println("DEL");
-                    line[line.length - 1] = "true";
-                }
 
 
-                String record = "";
-                for (int j = 0; j < line.length; j++) {
-                    record += line[j] + ",";
                 }
-                sb.append(record.substring(0, record.length() - 1)).append("\n");
+
+                if (deleteRecord) {
+                    System.out.println(deleteRecord);
+                    currentPage.deleted[k] = true;
+                }
+
+                currentPage.saveData(table.tablePath + (i + 1) + ".csv");
+
             }
-            PrintWriter printWriter = new PrintWriter(new File(filename));
-            printWriter.write(sb.toString());
-            printWriter.close();
+
         }
+
     }
 
     public static void main(String[] strArgs) throws DBException, IOException, ClassNotFoundException {
@@ -239,13 +231,13 @@ public class Main {
         * Create Students Table
         * */
 
-        Hashtable<String, String> studentTableSchema = new Hashtable<>();
-        studentTableSchema.put("ID", Integer.class.getName());
-        studentTableSchema.put("Name", String.class.getName());
-        studentTableSchema.put("Class", String.class.getName());
-        studentTableSchema.put("Join Date", Date.class.getName());
-
-        testImplemenationMain.createTable("Students", studentTableSchema, "ID");
+//        Hashtable<String, String> studentTableSchema = new Hashtable<>();
+//        studentTableSchema.put("ID", Integer.class.getName());
+//        studentTableSchema.put("Name", String.class.getName());
+//        studentTableSchema.put("Class", String.class.getName());
+//        studentTableSchema.put("Join Date", Date.class.getName());
+//
+//        testImplemenationMain.createTable("Students", studentTableSchema, "ID");
 
         /* ============================================================================================= */
 
@@ -253,46 +245,59 @@ public class Main {
         * Insert Record(s) Into Cities Table
         * */
 
-        Hashtable<String, String> citiesFirstRecord = new Hashtable<>();
-
-        citiesFirstRecord.put("ID", "1");
-        citiesFirstRecord.put("Name", "Cairo");
-        citiesFirstRecord.put("Governorate", "New Cairo");
-        citiesFirstRecord.put("Founding_Date", new Date().toString());
-
-        testImplemenationMain.insertIntoTable("Cities", citiesFirstRecord);
-
-        Hashtable<String, String> citiesSecondRecord = new Hashtable<>();
-
-        citiesSecondRecord.put("ID", "1");
-        citiesSecondRecord.put("Name", "Balabizo");
-        citiesSecondRecord.put("Governorate", "October");
-        citiesSecondRecord.put("Founding_Date", new Date().toString());
-
-        testImplemenationMain.insertIntoTable("Cities", citiesSecondRecord);
+//        Hashtable<String, String> citiesFirstRecord = new Hashtable<>();
+//
+//        citiesFirstRecord.put("ID", "1");
+//        citiesFirstRecord.put("Name", "Cairo");
+//        citiesFirstRecord.put("Governorate", "New Cairo");
+//        citiesFirstRecord.put("Founding_Date", new Date().toString());
+//
+//        testImplemenationMain.insertIntoTable("Cities", citiesFirstRecord);
+//
+//        Hashtable<String, String> citiesSecondRecord = new Hashtable<>();
+//
+//        citiesSecondRecord.put("ID", "1");
+//        citiesSecondRecord.put("Name", "Balabizo");
+//        citiesSecondRecord.put("Governorate", "October");
+//        citiesSecondRecord.put("Founding_Date", new Date().toString());
+//
+//        testImplemenationMain.insertIntoTable("Cities", citiesSecondRecord);
 
         /*
         * Insert Record(s) Into Students Table
         * */
 
-        Hashtable<String, String> studentsFirstRecord = new Hashtable<>();
+//        Hashtable<String, String> studentsFirstRecord = new Hashtable<>();
+//
+//        studentsFirstRecord.put("ID", "1");
+//        studentsFirstRecord.put("Name", "Mohamed");
+//        studentsFirstRecord.put("Class", "2014");
+//        studentsFirstRecord.put("Join Date", new Date().toString());
+//
+//        testImplemenationMain.insertIntoTable("Students", studentsFirstRecord);
+//
+//
+//        Hashtable<String, String> studentsSecondRecord = new Hashtable<>();
+//
+//        studentsSecondRecord.put("ID", "2");
+//        studentsSecondRecord.put("Name", "Islam");
+//        studentsSecondRecord.put("Class", "2015");
+//        studentsSecondRecord.put("Join Date", new Date().toString());
+//
+//        testImplemenationMain.insertIntoTable("Students", studentsSecondRecord);
 
-        studentsFirstRecord.put("ID", "1");
-        studentsFirstRecord.put("Name", "Mohamed");
-        studentsFirstRecord.put("Class", "2014");
-        studentsFirstRecord.put("Join Date", new Date().toString());
+//        ========================================================================================
 
-        testImplemenationMain.insertIntoTable("Students", studentsFirstRecord);
+        /*
+        * Delete Records from Cities Table
+        * */
 
+        Hashtable<String, String> citiesSecondRecordDel = new Hashtable<>();
+        citiesSecondRecordDel.put("Governorate", "New Cairo");
+        citiesSecondRecordDel.put("Name", "Cairo");
 
-        Hashtable<String, String> studentsSecondRecord = new Hashtable<>();
+        testImplemenationMain.deleteFromTable("Cities", citiesSecondRecordDel, "AND");
 
-        studentsSecondRecord.put("ID", "2");
-        studentsSecondRecord.put("Name", "Islam");
-        studentsSecondRecord.put("Class", "2015");
-        studentsSecondRecord.put("Join Date", new Date().toString());
-
-        testImplemenationMain.insertIntoTable("Students", studentsSecondRecord);
 
     }
 }

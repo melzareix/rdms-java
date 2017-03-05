@@ -1,6 +1,7 @@
 package DBApp;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class Table {
 
@@ -12,7 +13,6 @@ public class Table {
     Page last;
     boolean open;
 
-    //First Step: Constructing a table - You should initialize the variables given above -
     public Table(String name, String[] colNames, String[] colTypes) throws IOException {
         numPages = 0;
         this.name = name;
@@ -59,15 +59,18 @@ public class Table {
     }
 
     /**
-     * Inserts a record of strings into the last page of the table if it is not full,
+     * Insert a record of strings into the last page of the table if it is not full,
      * otherwise, it should add a new page into the folder and insert the record into it.
+     *
      * @param record: record to be inserted
      */
 
     public int insert(String[] record) throws ClassNotFoundException, IOException {
 
-        if (last == null || !last.insert(record)) {
+        record = Arrays.copyOf(record, record.length);
+        record[record.length - 1] = "false"; // Is Deleted Field
 
+        if (last == null || !last.insert(record)) {
             Page newPage = new Page(colNames.length);
             newPage.insert(record);
             addPage(newPage);
@@ -80,22 +83,34 @@ public class Table {
 
             String pagePath = tablePath + (numPages) + ".csv";
 
-            FileWriter fileWriter = new FileWriter(pagePath, true);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            PrintWriter printWriter = new PrintWriter(bufferedWriter);
-
-            /*
-            * Create Comma separated row and write to file
-            **/
-
-            String newRecord = String.join(",", record) + ",false";
-            printWriter.println(newRecord);
-            printWriter.close();
-
+            last.insert(record);
+            last.saveData(pagePath);
         }
+
         return numPages;
     }
 
+    /**
+     * Load a page into the memory
+     * @param idx: the number of the page to load
+     */
+
+    public Page loadPage(int idx) throws IOException {
+        Page currentPage = new Page(this.colNames.length);
+        String pagePath = tablePath + (idx) + ".csv";
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(pagePath));
+
+        String currentLine;
+        String[] currentLineSeparated;
+
+        while (((currentLine = bufferedReader.readLine()) != null)) {
+            currentLineSeparated = currentLine.split(",");
+            currentPage.insert(currentLineSeparated);
+        }
+
+        return currentPage;
+    }
     /*
     * Test Table Insertion
     * */
