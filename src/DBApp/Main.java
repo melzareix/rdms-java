@@ -163,7 +163,7 @@ public class Main {
 
         boolean isAND = strOperator.equals("AND");
 
-        for (int i = 0; i <= table.numPages; i++) {
+        for (int i = 0; i < table.numPages; i++) {
             currentPage = table.loadPage(i + 1); // Pages start from 1
 
             for (int k = 0; k < currentPage.current; k++) {
@@ -230,13 +230,13 @@ public class Main {
         * Create Students Table
         * */
 
-//        Hashtable<String, String> studentTableSchema = new Hashtable<>();
-//        studentTableSchema.put("ID", Integer.class.getName());
-//        studentTableSchema.put("Name", String.class.getName());
-//        studentTableSchema.put("Class", String.class.getName());
-//        studentTableSchema.put("Join Date", Date.class.getName());
-//
-//        testImplemenationMain.createTable("Students", studentTableSchema, "ID");
+        Hashtable<String, String> studentTableSchema = new Hashtable<>();
+        studentTableSchema.put("ID", Integer.class.getName());
+        studentTableSchema.put("Name", String.class.getName());
+        studentTableSchema.put("Class", String.class.getName());
+        studentTableSchema.put("Join Date", Date.class.getName());
+
+        testImplemenationMain.createTable("Students", studentTableSchema, "ID");
 
         /* ============================================================================================= */
 
@@ -266,24 +266,24 @@ public class Main {
         * Insert Record(s) Into Students Table
         * */
 
-//        Hashtable<String, String> studentsFirstRecord = new Hashtable<>();
-//
-//        studentsFirstRecord.put("ID", "1");
-//        studentsFirstRecord.put("Name", "Mohamed");
-//        studentsFirstRecord.put("Class", "2014");
-//        studentsFirstRecord.put("Join Date", new Date().toString());
-//
-//        testImplemenationMain.insertIntoTable("Students", studentsFirstRecord);
-//
-//
-//        Hashtable<String, String> studentsSecondRecord = new Hashtable<>();
-//
-//        studentsSecondRecord.put("ID", "2");
-//        studentsSecondRecord.put("Name", "Islam");
-//        studentsSecondRecord.put("Class", "2015");
-//        studentsSecondRecord.put("Join Date", new Date().toString());
-//
-//        testImplemenationMain.insertIntoTable("Students", studentsSecondRecord);
+        Hashtable<String, String> studentsFirstRecord = new Hashtable<>();
+
+        studentsFirstRecord.put("ID", "1");
+        studentsFirstRecord.put("Name", "Mohamed");
+        studentsFirstRecord.put("Class", "2014");
+        studentsFirstRecord.put("Join Date", new Date().toString());
+
+        testImplemenationMain.insertIntoTable("Students", studentsFirstRecord);
+
+
+        Hashtable<String, String> studentsSecondRecord = new Hashtable<>();
+
+        studentsSecondRecord.put("ID", "2");
+        studentsSecondRecord.put("Name", "Islam");
+        studentsSecondRecord.put("Class", "2015");
+        studentsSecondRecord.put("Join Date", new Date().toString());
+
+        testImplemenationMain.insertIntoTable("Students", studentsSecondRecord);
 
 //        ========================================================================================
 
@@ -291,12 +291,24 @@ public class Main {
         * Delete Records from Cities Table
         * */
 
-//        Hashtable<String, String> citiesSecondRecordDel = new Hashtable<>();
-//        citiesSecondRecordDel.put("Governorate", "New Cairo");
-//        citiesSecondRecordDel.put("Name", "Cairo");
-//
-//        testImplemenationMain.deleteFromTable("Cities", citiesSecondRecordDel, "AND");
+        Hashtable<String, String> citiesSecondRecordDel = new Hashtable<>();
+        citiesSecondRecordDel.put("Governorate", "New Cairo");
+        citiesSecondRecordDel.put("Name", "Cairo");
+
+        testImplemenationMain.deleteFromTable("Cities", citiesSecondRecordDel, "AND");
 
 
+        /*
+        * Delete Records from Students Table
+        * */
+
+        Hashtable<String, String> studentsRecordDel = new Hashtable<>();
+        studentsRecordDel.put("Class", "2014");
+
+        testImplemenationMain.deleteFromTable("Students", studentsRecordDel, "OR");
+
+        //        ================================================================================================
+
+        System.out.println("TESTING FINISHED!");
     }
 }

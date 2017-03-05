@@ -14,19 +14,26 @@ public class Page {
     boolean[] deleted;
     int current;
 
-    //First Step: Constructing a page - You should initialize the variables given above -
     public Page(int noCol) {
         deleted = new boolean[configuration.pageSize];
         data = new String[configuration.pageSize][noCol];
         current = 0;
     }
 
-    //Function1: A function that checks if the page is full
+    /**
+     * Check if page is full
+     * @return boolean: Indicating If the page is full
+     * */
+
     public boolean isFull() {
         return current == configuration.pageSize;
     }
 
-    //Function2: Inserting a record into the page
+    /**
+     * Insert a record into the page
+     * @return boolean: indicating status of inserting
+    * */
+
     public boolean insert(String[] val) {
         if (!isFull()) {
             data[current] = Arrays.copyOf(val, val.length - 1); // Data without deleted col
