@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43a8008f-66d9-4f56-bea5-56d7dbf5c938" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/metadata.csv" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/tabledata/Cities/1.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tabledata/Students/1.csv" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DB2-A/DBApp/Main.class" afterPath="$PROJECT_DIR$/out/production/DB2-A/DBApp/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DB2-A/DBApp/Page.class" afterPath="$PROJECT_DIR$/out/production/DB2-A/DBApp/Page.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DB2-A/DBApp/Table.class" afterPath="$PROJECT_DIR$/out/production/DB2-A/DBApp/Table.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBApp/Main.java" afterPath="$PROJECT_DIR$/src/DBApp/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBApp/Page.java" afterPath="$PROJECT_DIR$/src/DBApp/Page.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBApp/Table.java" afterPath="$PROJECT_DIR$/src/DBApp/Table.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -40,8 +38,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DBApp/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6258">
-              <caret line="298" column="83" lean-forward="false" selection-start-line="298" selection-start-column="83" selection-end-line="298" selection-end-column="83" />
+            <state relative-caret-position="1645">
+              <caret line="297" column="12" lean-forward="false" selection-start-line="297" selection-start-column="12" selection-end-line="297" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,23 +50,22 @@
       <file leaf-file-name="Table.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBApp/Table.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="86" column="20" lean-forward="false" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="20" />
+            <state relative-caret-position="-2177">
+              <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#60#99#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Page.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBApp/Page.java">
+      <file leaf-file-name="metadata.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/metadata.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="41" column="49" lean-forward="false" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,7 +79,6 @@
       <find>tokenizer</find>
       <find>sb.app</find>
       <find>deleteFromTable</find>
-      <find>println</find>
       <find>bf</find>
       <find>folder</find>
       <find>pAG</find>
@@ -98,8 +94,14 @@
       <find>AMD</find>
       <find>deletere</find>
       <find>last</find>
-      <find>saveD</find>
       <find>sav</find>
+      <find>record</find>
+      <find>save</find>
+      <find>inser</find>
+      <find>saveD</find>
+      <find>copy</find>
+      <find>println</find>
+      <find>syst</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -113,12 +115,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/tabledata/Student/1.csv" />
+        <option value="$PROJECT_DIR$/src/DBApp/Page.java" />
         <option value="$PROJECT_DIR$/src/pagingConfiguration/configuration.java" />
+        <option value="$PROJECT_DIR$/src/DBApp/Table.java" />
         <option value="$PROJECT_DIR$/metadata.csv" />
         <option value="$PROJECT_DIR$/src/DBApp/Main.java" />
         <option value="$PROJECT_DIR$/tabledata/Cities/1.csv" />
-        <option value="$PROJECT_DIR$/src/DBApp/Table.java" />
-        <option value="$PROJECT_DIR$/src/DBApp/Page.java" />
       </list>
     </option>
   </component>
@@ -209,10 +212,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagingConfiguration" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -703,12 +702,12 @@
       <updated>1488628549336</updated>
       <workItem from="1488628552623" duration="186000" />
       <workItem from="1488628885308" duration="13105000" />
-      <workItem from="1488660565514" duration="11357000" />
+      <workItem from="1488660565514" duration="13242000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24648000" />
+    <option name="totallyTimeSpent" value="26533000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -733,7 +732,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33432835" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47313434" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -780,9 +779,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tabledata/Student/7.csv" />
-    <entry file="file://$PROJECT_DIR$/tabledata/Student/9.csv" />
     <entry file="file://$PROJECT_DIR$/tabledata/Student/4.csv" />
-    <entry file="file://$PROJECT_DIR$/tabledata/Student/5.csv" />
     <entry file="file://$PROJECT_DIR$/tabledata/Student/3.csv" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar!/sun/security/tools/policytool/TaggedList.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -799,34 +796,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pagingConfiguration/configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tabledata/Cities1.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="true" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tabledata/Student/2.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3908">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tabledata/Student/1.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3066">
-          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -847,6 +820,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tabledata/Student/6.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3684">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tabledata/Student/9.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pagingConfiguration/configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tabledata/Student/2.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tabledata/Student/1.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="199" column="26" lean-forward="false" selection-start-line="199" selection-start-column="26" selection-end-line="199" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tabledata/Student/5.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBApp/Page.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="41" column="26" lean-forward="false" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/metadata.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -855,38 +886,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBApp/Page.java">
+    <entry file="file://$PROJECT_DIR$/tabledata/Cities/1.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="41" column="49" lean-forward="false" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="84">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBApp/Table.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="86" column="20" lean-forward="false" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="20" />
+        <state relative-caret-position="-2177">
+          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#60#99#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tabledata/Cities/1.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="51" lean-forward="true" selection-start-line="0" selection-start-column="51" selection-end-line="0" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBApp/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6258">
-          <caret line="298" column="83" lean-forward="false" selection-start-line="298" selection-start-column="83" selection-end-line="298" selection-end-column="83" />
+        <state relative-caret-position="1645">
+          <caret line="297" column="12" lean-forward="false" selection-start-line="297" selection-start-column="12" selection-end-line="297" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

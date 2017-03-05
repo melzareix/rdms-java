@@ -3,6 +3,7 @@ package DBApp;
 import java.io.*;
 import java.util.Arrays;
 
+@SuppressWarnings("ConstantConditions")
 public class Table {
 
     int numPages;
@@ -14,13 +15,26 @@ public class Table {
     boolean open;
 
     public Table(String name, String[] colNames, String[] colTypes) throws IOException {
-        numPages = 0;
         this.name = name;
         this.colNames = colNames;
         this.colTypes = colTypes;
         this.tablePath = "tabledata/" + this.name + "/";
+        this.loadLastPage();
     }
 
+    /**
+    * Load the last page to the memory
+    * */
+
+    private void loadLastPage() throws IOException {
+        try {
+            File tablePathDirectories = new File(tablePath);
+            this.numPages = tablePathDirectories.listFiles().length;
+            this.last = loadPage(numPages);
+        }catch (Exception e){
+            this.numPages = 0;
+        }
+    }
     /**
      * Create New Page `.csv` File
      *
@@ -67,14 +81,13 @@ public class Table {
 
     public int insert(String[] record) throws ClassNotFoundException, IOException {
 
-        record = Arrays.copyOf(record, record.length);
+        record = Arrays.copyOf(record, record.length + 1);
         record[record.length - 1] = "false"; // Is Deleted Field
 
         if (last == null || !last.insert(record)) {
             Page newPage = new Page(colNames.length);
             newPage.insert(record);
             addPage(newPage);
-
         } else {
 
             /*
@@ -82,8 +95,6 @@ public class Table {
             * */
 
             String pagePath = tablePath + (numPages) + ".csv";
-
-            last.insert(record);
             last.saveData(pagePath);
         }
 
@@ -92,6 +103,7 @@ public class Table {
 
     /**
      * Load a page into the memory
+     *
      * @param idx: the number of the page to load
      */
 
@@ -109,8 +121,11 @@ public class Table {
             currentPage.insert(currentLineSeparated);
         }
 
+        bufferedReader.close();
+
         return currentPage;
     }
+
     /*
     * Test Table Insertion
     * */

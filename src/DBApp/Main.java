@@ -138,7 +138,7 @@ public class Main {
 
         Table table = this.loadTable(strTableName);
 
-        String[] record = new String[htblColNameValue.size() + 1];
+        String[] record = new String[htblColNameValue.size()];
         for (int i = 0; i < table.colNames.length; i++) {
             record[i] = htblColNameValue.get(table.colNames[i]);
         }
@@ -199,7 +199,6 @@ public class Main {
                 }
 
                 if (deleteRecord) {
-                    System.out.println(deleteRecord);
                     currentPage.deleted[k] = true;
                 }
 
@@ -245,23 +244,23 @@ public class Main {
         * Insert Record(s) Into Cities Table
         * */
 
-//        Hashtable<String, String> citiesFirstRecord = new Hashtable<>();
+        Hashtable<String, String> citiesFirstRecord = new Hashtable<>();
+
+        citiesFirstRecord.put("ID", "1");
+        citiesFirstRecord.put("Name", "Cairo");
+        citiesFirstRecord.put("Governorate", "New Cairo");
+        citiesFirstRecord.put("Founding_Date", new Date().toString());
+
+        testImplemenationMain.insertIntoTable("Cities", citiesFirstRecord);
 //
-//        citiesFirstRecord.put("ID", "1");
-//        citiesFirstRecord.put("Name", "Cairo");
-//        citiesFirstRecord.put("Governorate", "New Cairo");
-//        citiesFirstRecord.put("Founding_Date", new Date().toString());
-//
-//        testImplemenationMain.insertIntoTable("Cities", citiesFirstRecord);
-//
-//        Hashtable<String, String> citiesSecondRecord = new Hashtable<>();
-//
-//        citiesSecondRecord.put("ID", "1");
-//        citiesSecondRecord.put("Name", "Balabizo");
-//        citiesSecondRecord.put("Governorate", "October");
-//        citiesSecondRecord.put("Founding_Date", new Date().toString());
-//
-//        testImplemenationMain.insertIntoTable("Cities", citiesSecondRecord);
+        Hashtable<String, String> citiesSecondRecord = new Hashtable<>();
+
+        citiesSecondRecord.put("ID", "1");
+        citiesSecondRecord.put("Name", "Balabizo");
+        citiesSecondRecord.put("Governorate", "October");
+        citiesSecondRecord.put("Founding_Date", new Date().toString());
+
+        testImplemenationMain.insertIntoTable("Cities", citiesSecondRecord);
 
         /*
         * Insert Record(s) Into Students Table
@@ -292,11 +291,11 @@ public class Main {
         * Delete Records from Cities Table
         * */
 
-        Hashtable<String, String> citiesSecondRecordDel = new Hashtable<>();
-        citiesSecondRecordDel.put("Governorate", "New Cairo");
-        citiesSecondRecordDel.put("Name", "Cairo");
-
-        testImplemenationMain.deleteFromTable("Cities", citiesSecondRecordDel, "AND");
+//        Hashtable<String, String> citiesSecondRecordDel = new Hashtable<>();
+//        citiesSecondRecordDel.put("Governorate", "New Cairo");
+//        citiesSecondRecordDel.put("Name", "Cairo");
+//
+//        testImplemenationMain.deleteFromTable("Cities", citiesSecondRecordDel, "AND");
 
 
     }
